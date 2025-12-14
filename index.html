@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elf & Ancient Civilizations: Real-Time Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&family=Atkinson+Hyperlegible:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a3a52;
+            --secondary: #d4a574;
+            --accent: #2d5a7b;
+            --success: #5a8f7b;
+            --bg-light: #f5f1ed;
+            --bg-card: #ffffff;
+            --text-dark: #2c2c2c;
+            --text-light: #666666;
+            --border: #e8e4df;
+            --letter-spacing: 0px;
+            --line-height: 1.6;
+            --font-scale: 1;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f1ed 0%, #ebe5de 100%);
+            color: var(--text-dark);
+            line-height: var(--line-height);
+            min-height: 100vh;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Dyslexia-Friendly Mode */
+        body.dyslexia-mode {
+            font-family: 'Atkinson Hyperlegible', sans-serif;
+            --letter-spacing: 0.05em;
+            --line-height: 1.8;
+        }
+
+        /* High Contrast Mode */
+        body.high-contrast {
+            --primary: #000000;
+            --secondary: #ff6600;
+            --accent: #0033cc;
+            --bg-light: #ffffff;
+            --bg-card: #ffffff;
+            --text-dark: #000000;
+            --text-light: #333333;
+            --border: #000000;
+        }
+
+        /* Text Size Adjustment */
+        body.text-sm {
+            --font-scale: 0.9;
+        }
+
+        body.text-lg {
+            --font-scale: 1.2;
+        }
+
+        body.text-xl {
+            --font-scale: 1.4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Accessibility Controls */
+        .a11y-controls {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .a11y-controls-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: calc(0.9rem * var(--font-scale));
+            letter-spacing: var(--letter-spacing);
+        }
+
+        .a11y-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .a11y-button {
+            padding: 10px 12px;
+            background: var(--bg-light);
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: calc(0.85rem * var(--font-scale));
+            font-weight: 600;
+            transition: all 0.2s ease;
+            color: var(--text-dark);
+            letter-spacing: var(--letter-spacing);
+            font-family: inherit;
+        }
+
+        .a11y-button:hover {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: white;
+        }
+
+        .a11y-button.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* Glossary Tooltip */
+        .glossary-term {
+            border-bottom: 2px dotted var(--secondary);
+            cursor: help;
+            position: relative;
+        }
+
+        .glossary-term:hover::after {
+            content: attr(data-definition);
+            position: absolute;
+            background: var(--primary);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: calc(0.8rem * var(--font-scale));
+            white-space: normal;
+            width: 200px;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            line-height: 1.4;
+            letter-spacing: normal;
+        }
+
+        /* Focus Line Reading Guide */
+        .reading-guide {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(transparent, rgba(212, 165, 116, 0.1), transparent);
+            pointer-events: none;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 2px solid var(--secondary);
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        body.reading-guide-active .reading-guide {
+            display: block;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: calc(2.5rem * var(--font-scale));
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing);
+        }
+
+        .header p {
+            font-size: calc(1rem * var(--font-scale));
+            color: var(--text-light);
+            letter-spacing: var(--letter-spacing);
+            line-height: var(--line-height);
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin-bottom: 30px;
+            animation: slideDown 0.6s ease-out 0.1s both;
+        }
+
+        .progress-bar-container {
+            background: var(--border);
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+        }
+
+        .progress-text {
+            font-size: calc(0.85rem * var(--font-scale));
+            color: var(--text-light);
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: var(--letter-spacing);
+            line-height: var(--line-height);
+        }
+
+        /* Form */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .question-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            animation: fadeIn 0.5s ease-out;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: var(--secondary);
+        }
+
+        .question-card:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(45, 90, 123, 0.1);
+        }
+
+        .question-card.answered {
+            background: linear-gradient(135deg, #f9f7f4 0%, #f5f1ed 100%);
+            border-color: var(--success);
+        }
+
+        .question-number {
+            font-size: calc(0.75rem * var(--font-scale));
+            color: var(--secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .question-text {
+            font-family: 'Playfair Display', serif;
+            font-size: calc(1.2rem * var(--font-scale));
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: var(--line-height);
+            letter-spacing: var(--letter-spacing);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .option {
+            position: relative;
+        }
+
+        .option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: flex-start;
+            padding: 16px 18px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: calc(0.95rem * var(--font-scale));
+            color: var(--text-dark);
+            letter-spacing: var(--letter-spacing);
+            line-height: var(--line-height);
+        }
+
+        .option-label::before {
+            content: '';
+            width: 22px;
+            height: 22px;
+            border: 3px solid var(--text-light);
+            border-radius: 50%;
+            margin-right: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .option input[type="radio"]:checked + .option-label {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8f0f6 100%);
+            border-color: var(--accent);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .option input[type="radio"]:checked + .option-label::before {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: inset 0 0 0 4px white;
+        }
+
+        .option input[type="radio"]:focus + .option-label {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(45, 90, 123, 0.1);
+        }
+
+        .option-label:hover {
+            border-color: var(--secondary);
+            background: var(--bg-light);
+        }
+
+        /* Submit Button */
+        .button-section {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            animation: slideUp 0.6s ease-out 0.2s both;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: calc(1rem * var(--font-scale));
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        button:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            box-shadow: 0 4px 12px rgba(26, 58, 82, 0.2);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(26, 58, 82, 0.3);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-reset {
+            background: var(--bg-light);
+            border: 2px solid var(--border);
+            color: var(--text-dark);
+        }
+
+        .btn-reset:hover {
+            background: var(--border);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid var(--success);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #155724;
+            font-weight: 600;
+            margin-top: 20px;
+            animation: slideUp 0.4s ease-out;
+            font-size: calc(1rem * var(--font-scale));
+            letter-spacing: var(--letter-spacing);
+            line-height: var(--line-height);
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: calc(1.8rem * var(--font-scale));
+            }
+
+            .question-text {
+                font-size: calc(1rem * var(--font-scale));
+            }
+
+            .button-section {
+                flex-direction: column;
+            }
+
+            .option-label {
+                font-size: calc(0.9rem * var(--font-scale));
+            }
+
+            .a11y-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .a11y-controls,
+            .button-section,
+            .reading-guide {
+                display: none;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Video Player */
+        .video-player-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .video-toggle-btn {
+            padding: 10px 14px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(26, 58, 82, 0.3);
+            font-family: 'Open Sans', sans-serif;
+            white-space: nowrap;
+        }
+
+        .video-toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(26, 58, 82, 0.4);
+        }
+
+        .video-toggle-btn:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .video-toggle-btn.videos-off {
+            background: linear-gradient(135deg, #999, #666);
+        }
+
+        .random-video {
+            max-width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--accent);
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile video sizing */
+        @media (max-width: 768px) {
+            .video-player-container {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .random-video {
+                max-width: 200px;
+            }
+
+            .video-toggle-btn {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-form" class="skip-link">Skip to assessment form</a>
+    
+    <div class="reading-guide"></div>
+
+    <!-- Random Video Player -->
+    <div class="video-player-container" id="videoContainer">
+        <button type="button" class="video-toggle-btn" id="videoToggleBtn" title="Toggle surprise videos on/off">🎬 Videos ON</button>
+        <video id="randomVideo" class="random-video" autoplay muted loop style="display:none;">
+            <source src="./1.mp4" type="video/mp4">
+            Your browser doesn't support HTML5 video.
+        </video>
+    </div>
+
+    <div class="container">
+        <div class="a11y-controls">
+            <div class="a11y-controls-title">Helpful Tools</div>
+            <div class="a11y-grid">
+                <button type="button" class="a11y-button" id="dyslexiaToggle" title="Makes text easier to read with a special font and more space">📖 Dyslexia-Friendly</button>
+                <button type="button" class="a11y-button" id="contrastToggle" title="Increases contrast to help with visibility">◐ High Contrast</button>
+                <button type="button" class="a11y-button" id="guidingLineToggle" title="Adds a reading guide to help focus">→ Reading Guide</button>
+                <button type="button" class="a11y-button" id="textSmaller" title="Decrease text size">A⁻ Text Size</button>
+                <button type="button" class="a11y-button" id="textLarger" title="Increase text size">A⁺ Text Size</button>
+                <button type="button" class="a11y-button" id="resetTools" title="Reset all tools to defaults">↺ Reset</button>
+            </div>
+        </div>
+
+        <div class="header">
+            <h1>Elf & Ancient Civilizations</h1>
+            <p>Real-Time Assessment • Topics 2 & 3: Egypt, Mesopotamia, Phoenicia & Persia</p>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-text">
+                <span id="answeredCount">0</span> of <span id="totalCount">15</span> questions answered
+            </div>
+        </div>
+
+        <form id="assessmentForm" role="form" aria-label="Elf and Ancient Civilizations Assessment">
+            <!-- Question 1 -->
+            <div class="question-card">
+                <div class="question-number">Question 1 of 15</div>
+                <div class="question-text">The North Pole is separated from the wider world by its location and environment, similar to how Egypt was protected by natural barriers. What is the <strong>MAIN</strong> advantage of this type of isolation for a civilization?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q1a" name="q1" value="a" aria-label="Option A">
+                        <label for="q1a" class="option-label">It prevents the civilization from having to trade with other groups</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1b" name="q1" value="b" aria-label="Option B">
+                        <label for="q1b" class="option-label">It allows the civilization to develop its own culture without constant external threats</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1c" name="q1" value="c" aria-label="Option C">
+                        <label for="q1c" class="option-label">It guarantees that the civilization will become more powerful than neighboring groups</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1d" name="q1" value="d" aria-label="Option D">
+                        <label for="q1d" class="option-label">It ensures that citizens will never need to learn about other cultures</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-card">
+                <div class="question-number">Question 2 of 15</div>
+                <div class="question-text">When Buddy first arrives in New York, he doesn't understand the city's customs and rules. Why would a Mesopotamian <span class="glossary-term" data-definition="A Mesopotamian scribe was an official writer who used cuneiform to record important information.">scribe's</span> ability to write <span class="glossary-term" data-definition="Cuneiform is a writing system that used wedge-shaped symbols to represent words, sounds, or ideas.">cuneiform</span> have been valuable in a similar situation?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q2a" name="q2" value="a" aria-label="Option A">
+                        <label for="q2a" class="option-label">Writing systems allowed people to teach and share information across different groups</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2b" name="q2" value="b" aria-label="Option B">
+                        <label for="q2b" class="option-label">Scribes used cuneiform to prevent other civilizations from understanding Mesopotamian secrets</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2c" name="q2" value="c" aria-label="Option C">
+                        <label for="q2c" class="option-label">Writing systems were only useful for recording religious beliefs and nothing else</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2d" name="q2" value="d" aria-label="Option D">
+                        <label for="q2d" class="option-label">Scribes could use cuneiform to force other people to follow their customs</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-card">
+                <div class="question-number">Question 3 of 15</div>
+                <div class="question-text">The North Pole has its own set of beliefs, traditions, and ways of doing things that are completely different from New York. Which ancient civilization experienced similar geographic and cultural separation?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q3a" name="q3" value="a" aria-label="Option A">
+                        <label for="q3a" class="option-label">The Phoenicians, who lived on coastal areas and traded constantly with neighbors</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3b" name="q3" value="b" aria-label="Option B">
+                        <label for="q3b" class="option-label">Egypt, which was isolated by deserts, seas, and <span class="glossary-term" data-definition="Cataracts are rocky rapids that made travel difficult on the Nile River.">cataracts</span> that separated it from other groups</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3c" name="q3" value="c" aria-label="Option C">
+                        <label for="q3c" class="option-label">Mesopotamia, which was located between two major rivers in a flat, open area</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3d" name="q3" value="d" aria-label="Option D">
+                        <label for="q3d" class="option-label">The Persian Empire, which actively conquered and absorbed surrounding territories</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-card">
+                <div class="question-number">Question 4 of 15</div>
+                <div class="question-text">In the North Pole, different elves have specific jobs focused on what they do best. How is this <strong>SIMILAR</strong> to the organization of ancient Egyptian society?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q4a" name="q4" value="a" aria-label="Option A">
+                        <label for="q4a" class="option-label">Both societies forced everyone to do the same job regardless of their skills</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4b" name="q4" value="b" aria-label="Option B">
+                        <label for="q4b" class="option-label">Both societies had people in different roles, which meant not everyone had to be a farmer</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4c" name="q4" value="c" aria-label="Option C">
+                        <label for="q4c" class="option-label">Both societies believed that only priests and pharaohs could have specialized jobs</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4d" name="q4" value="d" aria-label="Option D">
+                        <label for="q4d" class="option-label">Both societies valued individual choice over community needs</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-card">
+                <div class="question-number">Question 5 of 15</div>
+                <div class="question-text">Buddy's father runs a large company with managers, workers, and different departments. This structure is <strong>MOST SIMILAR</strong> to which aspect of ancient Mesopotamian city-states?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q5a" name="q5" value="a" aria-label="Option A">
+                        <label for="q5a" class="option-label">The way Sargon united multiple city-states through conquest and created a hierarchy</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5b" name="q5" value="b" aria-label="Option B">
+                        <label for="q5b" class="option-label">The purpose of <span class="glossary-term" data-definition="A ziggurat is a large religious building (temple) located in the center of the city.">ziggurats</span> as gathering places for all citizens</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5c" name="q5" value="c" aria-label="Option C">
+                        <label for="q5c" class="option-label">The design of cuneiform to be simple enough for everyone to learn</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5d" name="q5" value="d" aria-label="Option D">
+                        <label for="q5d" class="option-label">The reasons Sumerian city-states eventually fought among themselves</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-card">
+                <div class="question-number">Question 6 of 15</div>
+                <div class="question-text">One reason ancient Egyptian society was able to have artists, scribes, and merchants was because farmers produced extra grain beyond what was needed. What do the elves in the North Pole have "extra" of that allows them to specialize in their different jobs?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q6a" name="q6" value="a" aria-label="Option A">
+                        <label for="q6a" class="option-label">Extra weapons to protect themselves from invaders</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q6b" name="q6" value="b" aria-label="Option B">
+                        <label for="q6b" class="option-label">Extra land that other civilizations didn't have</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q6c" name="q6" value="c" aria-label="Option C">
+                        <label for="q6c" class="option-label">Extra resources and organized systems that reduce waste and strain</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q6d" name="q6" value="d" aria-label="Option D">
+                        <label for="q6d" class="option-label">Extra authority from a powerful leader that forces people to work differently</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-card">
+                <div class="question-number">Question 7 of 15</div>
+                <div class="question-text">Throughout the film, characters begin celebrating Christmas and embracing Buddy's values of kindness and family traditions. What historical process does this <strong>MOST CLOSELY RESEMBLE</strong>?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q7a" name="q7" value="a" aria-label="Option A">
+                        <label for="q7a" class="option-label">The way the Phoenicians spread their alphabet and cultural practices through trade</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q7b" name="q7" value="b" aria-label="Option B">
+                        <label for="q7b" class="option-label">The way Egypt's natural barriers prevented any cultural change</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q7c" name="q7" value="c" aria-label="Option C">
+                        <label for="q7c" class="option-label">The way Sargon forced city-states to abandon their own customs</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q7d" name="q7" value="d" aria-label="Option D">
+                        <label for="q7d" class="option-label">The way Kush refused to trade with any other civilization</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-card">
+                <div class="question-number">Question 8 of 15</div>
+                <div class="question-text">When Buddy shares his elf traditions and worldview with New Yorkers, and they gradually adopt some of his perspectives, which relationship from ancient history does this <strong>BEST MATCH</strong>?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q8a" name="q8" value="a" aria-label="Option A">
+                        <label for="q8a" class="option-label">The conflict between Egypt and invading empires that rejected Egyptian culture</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q8b" name="q8" value="b" aria-label="Option B">
+                        <label for="q8b" class="option-label">The trade relationship between Egypt and Kush, where Kush adopted aspects of Egyptian culture</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q8c" name="q8" value="c" aria-label="Option C">
+                        <label for="q8c" class="option-label">The way Mesopotamian city-states competed to create the strongest armies</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q8d" name="q8" value="d" aria-label="Option D">
+                        <label for="q8d" class="option-label">The Persian Empire's decision to isolate itself from all foreign influence</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-card">
+                <div class="question-number">Question 9 of 15</div>
+                <div class="question-text">The Phoenicians became known as "carriers of civilization" because they traded with many different places and spread their cultural practices. What role does Buddy play in New York that is <strong>SIMILAR</strong> to the role of Phoenician traders?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q9a" name="q9" value="a" aria-label="Option A">
+                        <label for="q9a" class="option-label">He uses weapons to force people to accept his way of life</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q9b" name="q9" value="b" aria-label="Option B">
+                        <label for="q9b" class="option-label">He writes down rules in a formal system that others must follow</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q9c" name="q9" value="c" aria-label="Option C">
+                        <label for="q9c" class="option-label">He travels through the community and spreads values and practices that others begin to adopt</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q9d" name="q9" value="d" aria-label="Option D">
+                        <label for="q9d" class="option-label">He creates barriers that prevent people from accessing new ideas</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-card">
+                <div class="question-number">Question 10 of 15</div>
+                <div class="question-text">Buddy struggles to communicate his values to people in New York at first, but eventually his family and friends understand him. Why would written communication systems like cuneiform or <span class="glossary-term" data-definition="Hieroglyphics are Egyptian writing symbols that represented words, sounds, and ideas.">hieroglyphics</span> have been important for solving similar communication problems in ancient civilizations?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q10a" name="q10" value="a" aria-label="Option A">
+                        <label for="q10a" class="option-label">They allowed people to record and preserve important messages that could be understood across time and distance</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10b" name="q10" value="b" aria-label="Option B">
+                        <label for="q10b" class="option-label">They prevented people from different areas from ever needing to communicate</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10c" name="q10" value="c" aria-label="Option C">
+                        <label for="q10c" class="option-label">They were so complicated that only leaders could use them to control the population</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10d" name="q10" value="d" aria-label="Option D">
+                        <label for="q10d" class="option-label">They replaced the need for people to interact with or learn about each other</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question-card">
+                <div class="question-number">Question 11 of 15</div>
+                <div class="question-text">The <span class="glossary-term" data-definition="The Immortals were an elite group of the Persian standing army.">Immortals</span> were an elite group that helped the Persian Empire maintain unity across diverse peoples. In Buddy's story, who serves a <strong>SIMILAR</strong> role by helping bridge the gap between two very different worlds?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q11a" name="q11" value="a" aria-label="Option A">
+                        <label for="q11a" class="option-label">The store manager, who enforces rules and removes people who don't fit in</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11b" name="q11" value="b" aria-label="Option B">
+                        <label for="q11b" class="option-label">Buddy's father, who initially rejects Buddy's values and way of life</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11c" name="q11" value="c" aria-label="Option C">
+                        <label for="q11c" class="option-label">Jovie, who understands Buddy despite his differences and helps others accept him</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11d" name="q11" value="d" aria-label="Option D">
+                        <label for="q11d" class="option-label">The business owner of Buddy's father's company, who cares only about profits</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question-card">
+                <div class="question-number">Question 12 of 15</div>
+                <div class="question-text">In ancient Egypt, grain <span class="glossary-term" data-definition="A surplus is an extra amount of something left over after needs are met.">surpluses</span> allowed people to specialize in art, crafts, and other roles beyond farming. How does Buddy's optimism and generosity create a similar kind of "surplus" in his community?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q12a" name="q12" value="a" aria-label="Option A">
+                        <label for="q12a" class="option-label">It makes people want to stop working and only celebrate holidays</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q12b" name="q12" value="b" aria-label="Option B">
+                        <label for="q12b" class="option-label">It frees people from focusing only on competition and profit, allowing them to value family and kindness</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q12c" name="q12" value="c" aria-label="Option C">
+                        <label for="q12c" class="option-label">It forces the city to produce more Christmas decorations than it needs</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q12d" name="q12" value="d" aria-label="Option D">
+                        <label for="q12d" class="option-label">It prevents people from engaging in any kind of business or work</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question-card">
+                <div class="question-number">Question 13 of 15</div>
+                <div class="question-text">The Nile River's yearly flooding provided resources that enabled Egyptian civilization to grow and develop. What "resource" does Buddy bring to New York that allows his community to grow in a similar way?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q13a" name="q13" value="a" aria-label="Option A">
+                        <label for="q13a" class="option-label">Money and business connections from his father's company</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q13b" name="q13" value="b" aria-label="Option B">
+                        <label for="q13b" class="option-label">A renewed focus on human connection, celebration, and values beyond material success</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q13c" name="q13" value="c" aria-label="Option C">
+                        <label for="q13c" class="option-label">Scientific knowledge that the North Pole had discovered before other civilizations</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q13d" name="q13" value="d" aria-label="Option D">
+                        <label for="q13d" class="option-label">The ability to force people to change their beliefs and traditions</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question-card">
+                <div class="question-number">Question 14 of 15</div>
+                <div class="question-text">In Mesopotamia, fighting among city-states left them weak and vulnerable to conquest by Sargon. At the start of the film, Buddy's father's company seems focused only on competition and profit. How does this similarity suggest what might happen to his father's life and relationships?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q14a" name="q14" value="a" aria-label="Option A">
+                        <label for="q14a" class="option-label">Without unity or focus on shared values, he will become more successful and powerful</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q14b" name="q14" value="b" aria-label="Option B">
+                        <label for="q14b" class="option-label">Internal conflict and disconnection can leave a person (or society) vulnerable to collapse or loss of what matters most</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q14c" name="q14" value="c" aria-label="Option C">
+                        <label for="q14c" class="option-label">Competition between family members will automatically create stronger bonds</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q14d" name="q14" value="d" aria-label="Option D">
+                        <label for="q14d" class="option-label">Focusing only on business success guarantees protection from all personal problems</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question-card">
+                <div class="question-number">Question 15 of 15</div>
+                <div class="question-text">The Phoenician alphabet was based on sounds rather than pictures, which made it easier to learn and spread. How does Buddy's approach to communicating about Christmas and kindness—which is simple, direct, and focused on feelings rather than complex rules—serve a <strong>SIMILAR</strong> purpose?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q15a" name="q15" value="a" aria-label="Option A">
+                        <label for="q15a" class="option-label">It makes his message harder to understand because it avoids traditional explanations</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q15b" name="q15" value="b" aria-label="Option B">
+                        <label for="q15b" class="option-label">It allows more people to connect with and adopt his message, similar to how a simpler alphabet spreads more easily</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q15c" name="q15" value="c" aria-label="Option C">
+                        <label for="q15c" class="option-label">It proves that only educated people can understand important cultural values</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q15d" name="q15" value="d" aria-label="Option D">
+                        <label for="q15d" class="option-label">It prevents people from ever changing their minds about what matters in life</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button Section -->
+            <div class="button-section">
+                <button type="reset" class="btn-reset">Clear Answers</button>
+                <button type="submit" class="btn-submit" id="submitBtn">Submit Assessment</button>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                ✓ Your assessment has been submitted! Thank you for your thoughtful responses.
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('assessmentForm');
+        const progressBar = document.getElementById('progressBar');
+        const answeredCount = document.getElementById('answeredCount');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const totalQuestions = 15;
+
+        // Accessibility Controls
+        const dyslexiaToggle = document.getElementById('dyslexiaToggle');
+        const contrastToggle = document.getElementById('contrastToggle');
+        const guidingLineToggle = document.getElementById('guidingLineToggle');
+        const textSmaller = document.getElementById('textSmaller');
+        const textLarger = document.getElementById('textLarger');
+        const resetTools = document.getElementById('resetTools');
+
+        // Load saved preferences from localStorage
+        function loadPreferences() {
+            const prefs = JSON.parse(localStorage.getItem('a11yPreferences')) || {};
+            
+            if (prefs.dyslexia) {
+                document.body.classList.add('dyslexia-mode');
+                dyslexiaToggle.classList.add('active');
+            }
+            
+            if (prefs.contrast) {
+                document.body.classList.add('high-contrast');
+                contrastToggle.classList.add('active');
+            }
+            
+            if (prefs.guidingLine) {
+                document.body.classList.add('reading-guide-active');
+                guidingLineToggle.classList.add('active');
+            }
+            
+            if (prefs.textSize) {
+                document.body.classList.add(`text-${prefs.textSize}`);
+                if (prefs.textSize === 'lg') textLarger.classList.add('active');
+                if (prefs.textSize === 'sm') textSmaller.classList.add('active');
+            }
+        }
+
+        // Save preferences to localStorage
+        function savePreferences() {
+            const prefs = {
+                dyslexia: document.body.classList.contains('dyslexia-mode'),
+                contrast: document.body.classList.contains('high-contrast'),
+                guidingLine: document.body.classList.contains('reading-guide-active'),
+                textSize: document.body.className.match(/text-(sm|lg|xl)/) ? document.body.className.match(/text-(sm|lg|xl)/)[1] : null
+            };
+            localStorage.setItem('a11yPreferences', JSON.stringify(prefs));
+        }
+
+        // Dyslexia-Friendly Toggle
+        dyslexiaToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dyslexia-mode');
+            dyslexiaToggle.classList.toggle('active');
+            savePreferences();
+        });
+
+        // High Contrast Toggle
+        contrastToggle.addEventListener('click', () => {
+            document.body.classList.toggle('high-contrast');
+            contrastToggle.classList.toggle('active');
+            savePreferences();
+        });
+
+        // Guiding Line Toggle
+        guidingLineToggle.addEventListener('click', () => {
+            document.body.classList.toggle('reading-guide-active');
+            guidingLineToggle.classList.toggle('active');
+            savePreferences();
+        });
+
+        // Text Size Controls
+        textSmaller.addEventListener('click', () => {
+            document.body.classList.remove('text-lg', 'text-xl');
+            if (!document.body.classList.contains('text-sm')) {
+                document.body.classList.add('text-sm');
+                textLarger.classList.remove('active');
+                textSmaller.classList.add('active');
+            } else {
+                document.body.classList.remove('text-sm');
+                textSmaller.classList.remove('active');
+            }
+            savePreferences();
+        });
+
+        textLarger.addEventListener('click', () => {
+            document.body.classList.remove('text-sm');
+            if (!document.body.classList.contains('text-lg')) {
+                document.body.classList.add('text-lg');
+                textSmaller.classList.remove('active');
+                textLarger.classList.add('active');
+            } else {
+                document.body.classList.remove('text-lg');
+                textLarger.classList.remove('active');
+            }
+            savePreferences();
+        });
+
+        // Reset Tools
+        resetTools.addEventListener('click', () => {
+            document.body.classList.remove('dyslexia-mode', 'high-contrast', 'reading-guide-active', 'text-sm', 'text-lg', 'text-xl');
+            dyslexiaToggle.classList.remove('active');
+            contrastToggle.classList.remove('active');
+            guidingLineToggle.classList.remove('active');
+            textSmaller.classList.remove('active');
+            textLarger.classList.remove('active');
+            localStorage.removeItem('a11yPreferences');
+        });
+
+        // Track answers and update progress
+        function updateProgress() {
+            const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+            answeredCount.textContent = answered;
+            const percentage = (answered / totalQuestions) * 100;
+            progressBar.style.width = percentage + '%';
+
+            // Mark cards as answered
+            document.querySelectorAll('.question-card').forEach(card => {
+                const radioInCard = card.querySelector('input[type="radio"]:checked');
+                if (radioInCard) {
+                    card.classList.add('answered');
+                } else {
+                    card.classList.remove('answered');
+                }
+            });
+
+            // Update button state
+            submitBtn.disabled = answered < totalQuestions;
+        }
+
+        // Add event listeners to all radio buttons
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', updateProgress);
+        });
+
+        // Handle form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(form);
+            const responses = {};
+            
+            for (let i = 1; i <= totalQuestions; i++) {
+                responses[`q${i}`] = formData.get(`q${i}`);
+            }
+
+            // Add timestamp
+            responses['timestamp'] = new Date().toLocaleString();
+
+            // Log to console (for debugging)
+            console.log('Form Submitted:', responses);
+
+            // Show success message
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitted ✓';
+            successMessage.classList.add('show');
+
+            // Google Sheets integration would go here
+            // See GitHub README for setup instructions
+        });
+
+        // Handle reset
+        document.querySelector('.btn-reset').addEventListener('click', () => {
+            successMessage.classList.remove('show');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submit Assessment';
+            updateProgress();
+        });
+
+        // Load preferences on page load
+        loadPreferences();
+
+        // Initial state
+        updateProgress();
+
+        // ========== RANDOM VIDEO PLAYER ==========
+        const videoElement = document.getElementById('randomVideo');
+        const videoToggleBtn = document.getElementById('videoToggleBtn');
+        const videoContainer = document.getElementById('videoContainer');
+        
+        // List of video files (same naming as GitHub)
+        const videoList = ['./1.mp4', './2.mp4', './3.mp4', './4.mp4', './5.mp4'];
+        
+        let videosEnabled = true;
+        let videoIntervalId = null;
+        let nextVideoTime = 0;
+
+        // Function to get a random video
+        function getRandomVideo() {
+            return videoList[Math.floor(Math.random() * videoList.length)];
+        }
+
+        // Function to play the next video
+        function playNextVideo() {
+            if (!videosEnabled) return;
+            
+            const randomVideo = getRandomVideo();
+            videoElement.src = randomVideo;
+            videoElement.style.display = 'block';
+            videoElement.play();
+        }
+
+        // Start the video timer
+        function startVideoTimer() {
+            // Play first video after 60 seconds
+            nextVideoTime = Date.now() + 60000;
+            
+            videoIntervalId = setInterval(() => {
+                if (videosEnabled) {
+                    playNextVideo();
+                    // Schedule next video for 60 seconds later
+                    nextVideoTime = Date.now() + 60000;
+                }
+            }, 60000); // 60 seconds = 1 minute
+        }
+
+        // Toggle videos on/off
+        videoToggleBtn.addEventListener('click', () => {
+            videosEnabled = !videosEnabled;
+            
+            if (videosEnabled) {
+                videoToggleBtn.textContent = '🎬 Videos ON';
+                videoToggleBtn.classList.remove('videos-off');
+                startVideoTimer(); // Restart the timer
+            } else {
+                videoToggleBtn.textContent = '🎬 Videos OFF';
+                videoToggleBtn.classList.add('videos-off');
+                videoElement.style.display = 'none';
+                videoElement.pause();
+                // Timer continues but won't play videos
+            }
+            
+            // Save preference
+            localStorage.setItem('videosEnabled', JSON.stringify(videosEnabled));
+        });
+
+        // Load video preference
+        const savedVideoPreference = localStorage.getItem('videosEnabled');
+        if (savedVideoPreference !== null) {
+            videosEnabled = JSON.parse(savedVideoPreference);
+            if (!videosEnabled) {
+                videoToggleBtn.textContent = '🎬 Videos OFF';
+                videoToggleBtn.classList.add('videos-off');
+            }
+        }
+
+        // Start video playback when page loads
+        if (videosEnabled) {
+            startVideoTimer();
+        }
+
+        // Stop videos when form is submitted (optional - can remove if you want them to keep playing)
+        form.addEventListener('submit', () => {
+            videoElement.pause();
+            videoElement.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
